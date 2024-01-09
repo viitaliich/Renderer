@@ -13,17 +13,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
---IncludeDir["GLFW"] = "Renderer/vendor/GLFW/include"
---IncludeDir["Glad"] = "Renderer/vendor/Glad/include"
+IncludeDir["GLFW"] = "Renderer/vendor/GLFW/include"
+IncludeDir["Glad"] = "Renderer/vendor/Glad/include"
 --IncludeDir["ImGui"] = "Renderer/vendor/imgui"
 --IncludeDir["glm"] = "Renderer/vendor/glm"
 IncludeDir["spdlog"] = "Renderer/vendor/spdlog"
 
---group "Dependencies"
---    include "Renderer/vendor/GLFW"
---    include "Renderer/vendor/Glad"
+group "Dependencies"
+    include "Renderer/vendor/GLFW"
+    include "Renderer/vendor/Glad"
 --    include "Renderer/vendor/imgui"
---group ""
+group ""
 
 project "Renderer"
 	location "Renderer"
@@ -55,8 +55,8 @@ project "Renderer"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		--"%{IncludeDir.GLFW}",
-		--"%{IncludeDir.Glad}",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
 		--"%{IncludeDir.ImGui}",
 		--"%{IncludeDir.glm}"
 		--"%{IncludeDir.spdlog}"
@@ -64,8 +64,8 @@ project "Renderer"
 
 	links 
 	{ 
-		--"GLFW",
-		--"Glad",
+		"GLFW",
+		"Glad",
 		--"ImGui",
 		"opengl32.lib"
 	}
@@ -77,7 +77,7 @@ project "Renderer"
 		{
 			--"EG_PLATFORM_WINDOWS",
 			--"EG_BUILD_DLL",
-			--"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
 			"CONF_DEBUG"
 		}
 

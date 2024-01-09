@@ -8,6 +8,8 @@ public:
 	Sandbox()
 	{
 		LOGI("Sandbox App Constructor");
+		//int a = 5;
+		//LOGI("Hello! Var={0}", a);
 	}
 
 	~Sandbox()
