@@ -16,10 +16,12 @@ public:
 	virtual void OnImGuiRender() override;
 private:
 	int mBufferSize;
+	int mIndeciesSize;
+	int mAttribComponentNum;
 
 	GLCore::Utils::Shader* mShader;
 	GLCore::Utils::OrthographicCameraController m_CameraController;
 
-	GLuint mTriangleVB;
-	//GLuint mTriangleVA, mTriangleIB;
+	GLuint mTriangleVB, mTriangleIB;
+	//GLuint mTriangleVA;
 };
