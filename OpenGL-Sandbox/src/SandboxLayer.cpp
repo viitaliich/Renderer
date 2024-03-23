@@ -87,10 +87,7 @@ void SandboxLayer::OnUpdate(Timestep ts)
 	//glDrawArrays(GL_TRIANGLES, 0, mBufferSize / mAttribComponentNum);
 
 	// TODO: If we HAVE Index Buffer
-	glDrawElements(GL_TRIANGLES, mIndeciesSize, GL_UNSIGNED_INT, nullptr);
-
-
-
+	GLcall(glDrawElements(GL_TRIANGLES, mIndeciesSize, GL_UNSIGNED_INT, nullptr));
 }
 
 void SandboxLayer::OnImGuiRender()

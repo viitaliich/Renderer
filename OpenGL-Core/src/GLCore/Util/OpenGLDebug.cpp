@@ -39,6 +39,7 @@ namespace GLCore::Utils {
 
 	void EnableGLDebugging()
 	{
+		// available since OpenGL 4.3.
 		//glDebugMessageCallback(OpenGLLogMessage, nullptr);
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
