@@ -20,7 +20,7 @@ private:
 	int mAttribComponentNum;
 
 	GLCore::Utils::Shader* mShader;
-	GLCore::Utils::OrthographicCameraController m_CameraController;
+	//GLCore::Utils::OrthographicCameraController m_CameraController;
 
 	GLuint mTriangleVB, mTriangleIB;
 	//GLuint mTriangleVA;
