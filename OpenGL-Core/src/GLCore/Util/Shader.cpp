@@ -58,11 +58,41 @@ namespace GLCore::Utils {
 		return shader;
 	}
 
+	unsigned int Shader::getUniformLocation(const std::string& name)
+	{
+		if (mUniformLocationCache.find(name) != mUniformLocationCache.end())
+		{
+			return mUniformLocationCache[name];
+		}
+		int location = glGetUniformLocation(m_RendererID, name.c_str());
+		if (location == -1)
+		{
+			LOG_WARN("WARNING! Uniform {0} doesn't exist", name);
+		}
+		mUniformLocationCache[name] = location;
+		return location;
+	}
+
 	Shader* Shader::FromGLSLTextFiles(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
 	{
 		Shader* shader = new Shader();
 		shader->LoadFromGLSLTextFiles(vertexShaderPath, fragmentShaderPath);
 		return shader;
+	}
+
+	void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
+	{
+		glUniform4f(getUniformLocation(name), v0, v1, v2, v3);
+	}
+
+	void Shader::Bind() const
+	{
+		glUseProgram(m_RendererID);
+	}
+
+	void Shader::Unbind() const
+	{
+		glUseProgram(0);
 	}
 	
 	void Shader::LoadFromGLSLTextFiles(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
