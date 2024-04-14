@@ -2,6 +2,7 @@
 
 using namespace GLCore;
 using namespace GLCore::Utils;
+using namespace GLCore::Render;
 
 SandboxLayer::SandboxLayer()
 {

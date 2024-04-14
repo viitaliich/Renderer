@@ -1,14 +1,17 @@
 #pragma once
 
-class VertexBuffer
-{
-private:
-	unsigned int mRendererID;
+namespace GLCore::Utils {
 
-public:
-	VertexBuffer(const void* data, unsigned int size);
-	~VertexBuffer();
+	class VertexBuffer
+	{
+	private:
+		unsigned int mRendererID;
 
-	void Bind() const;
-	void Unbind() const;
-};
+	public:
+		VertexBuffer(const void* data, unsigned int size);
+		~VertexBuffer();
+
+		void Bind() const;
+		void Unbind() const;
+	};
+}

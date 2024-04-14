@@ -3,16 +3,19 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 
-class VertexArray
-{
-private:
-	unsigned int mRendererID;
-public:
-	VertexArray();
-	~VertexArray();
+namespace GLCore::Utils {
 
-	void AddBuffer(const VertexBuffer* vertexBuffer, const VertexBufferLayout& vbLayout);
+	class VertexArray
+	{
+	private:
+		unsigned int mRendererID;
+	public:
+		VertexArray();
+		~VertexArray();
 
-	void Bind() const;
-	void Unbind() const;
-};
+		void AddBuffer(const VertexBuffer* vertexBuffer, const VertexBufferLayout& vbLayout);
+
+		void Bind() const;
+		void Unbind() const;
+	};
+}

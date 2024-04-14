@@ -1,8 +1,6 @@
 #pragma once
 
-//#include <GLCore.h>
-//#include <GLCoreUtils.h>
-#include <GLCore/Util/Renderer.h>
+#include <GLCore/Renderer/Renderer.h>
 
 class SandboxLayer : public GLCore::Layer
 {
@@ -19,10 +17,9 @@ private:
 	GLCore::Utils::Shader* mShader = nullptr;
 	//GLCore::Utils::OrthographicCameraController m_CameraController;
 	
-	// include Renderer ???
-	std::unique_ptr<Renderer> mRenderer;
+	std::unique_ptr<GLCore::Render::Renderer> mRenderer;
 
-	VertexArray* mVertexArray = nullptr;
-	VertexBuffer* mVertexBuffer = nullptr;
-	IndexBuffer* mIndexBuffer = nullptr;
+	GLCore::Utils::VertexArray* mVertexArray = nullptr;
+	GLCore::Utils::VertexBuffer* mVertexBuffer = nullptr;
+	GLCore::Utils::IndexBuffer* mIndexBuffer = nullptr;
 };
