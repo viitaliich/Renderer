@@ -23,7 +23,7 @@ namespace GLCore::Utils {
 		for (unsigned int i = 0; i < elements.size(); i++)
 		{
 			const auto& element = elements[i];
-			glEnableVertexAttribArray(i);	// ??? 0
+			glEnableVertexAttribArray(i);
 			glVertexAttribPointer(i, element.count, element.type,
 				element.normalised, vbLayout.GetStride(), (const void*)offset);
 			offset += element.count * VBLayoutElement::GetSizeOfType(element.type);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GLCore/Renderer/Renderer.h>
+#include <GLRenderUtils.h>
 
 class SandboxLayer : public GLCore::Layer
 {
@@ -14,11 +15,10 @@ public:
 	virtual void OnUpdate(GLCore::Timestep ts) override;
 	virtual void OnImGuiRender() override;
 private:
-	GLCore::Utils::Shader* mShader = nullptr;
-	//GLCore::Utils::OrthographicCameraController m_CameraController;
-	
+	GLCore::Render::Texture* mTexture = nullptr;
 	std::unique_ptr<GLCore::Render::Renderer> mRenderer;
 
+	GLCore::Utils::Shader* mShader = nullptr;
 	GLCore::Utils::VertexArray* mVertexArray = nullptr;
 	GLCore::Utils::VertexBuffer* mVertexBuffer = nullptr;
 	GLCore::Utils::IndexBuffer* mIndexBuffer = nullptr;

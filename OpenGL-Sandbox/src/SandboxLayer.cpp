@@ -20,29 +20,48 @@ void SandboxLayer::OnAttach()
 	EnableGLDebugging();
 
 	// Init here
-	
+
 	mShader = Shader::FromGLSLTextFiles(
 		"assets/shaders/test.vert.glsl",
 		"assets/shaders/test.frag.glsl"
 	);
 
+	// x, y, tex_x, tex_y
 	float positions[] = {
-		-0.5f, -0.5f,
-		 0.5f, -0.5f,
-		 0.5f,  0.5f,
-		-0.5f,  0.5f,
+		-0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 1.0f
 	};
+
+	/*float positions[] = {
+		-1.0f, -1.0f,
+		 1.0f, -1.0f,
+		 1.0f,  1.0f,
+		-1.0f,  1.0f,
+	};*/
 
 	const unsigned int indecies[] = {
 		0, 1, 2,
 		2, 3, 0
 	};
 
+	//std::string texturePath = "C:\\dev\\Renderer\\OpenGL-Sandbox\\assets\\texturesPettern_mod.png";
+	std::string texturePath = "assets/textures/Pettern_mod.png";
+	mTexture = new Texture(texturePath);
+	int slot = 0;
+	mTexture->Bind(slot);
+	mShader->SetUniform1i("uTexture", slot);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+
 	mVertexBuffer = new VertexBuffer(positions, sizeof(positions));
 	
 	mVertexArray = new VertexArray();
 	VertexBufferLayout layout;
-	layout.Push<float>(2);
+	layout.Push<float>(2);	// points
+	layout.Push<float>(2);	// texture
 	mVertexArray->AddBuffer(mVertexBuffer, layout);
 
 	mIndexBuffer = new IndexBuffer(indecies, 6);
@@ -58,6 +77,9 @@ void SandboxLayer::OnDetach()
 	mVertexBuffer->Unbind();
 	mIndexBuffer->Unbind();
 	mShader->Unbind();
+	
+	mTexture->Unbind();
+	delete mTexture;
 }
 
 void SandboxLayer::OnEvent(Event& event)

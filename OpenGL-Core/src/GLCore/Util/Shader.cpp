@@ -85,6 +85,11 @@ namespace GLCore::Utils {
 		glUniform4f(getUniformLocation(name), v0, v1, v2, v3);
 	}
 
+	void Shader::SetUniform1i(const std::string& name, int value)
+	{
+		glUniform1i(getUniformLocation(name), value);
+	}
+
 	void Shader::Bind() const
 	{
 		glUseProgram(m_RendererID);

@@ -9,4 +9,3 @@
 #include "GLCore/Util/VertexBuffer.h"
 #include "GLCore/Util/IndexBuffer.h"
 #include "GLCore/Util/VertexArray.h"
-//#include "GLCore/Util/Renderer.h"
