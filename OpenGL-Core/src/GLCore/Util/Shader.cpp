@@ -3,6 +3,7 @@
 
 #include <fstream>
 
+
 namespace GLCore::Utils {
 
 	static std::string ReadFileAsString(const std::string& filepath)
@@ -78,6 +79,11 @@ namespace GLCore::Utils {
 		Shader* shader = new Shader();
 		shader->LoadFromGLSLTextFiles(vertexShaderPath, fragmentShaderPath);
 		return shader;
+	}
+
+	void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
+	{
+		glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
 	}
 
 	void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)

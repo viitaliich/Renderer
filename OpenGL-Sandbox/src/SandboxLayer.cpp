@@ -4,7 +4,9 @@ using namespace GLCore;
 using namespace GLCore::Utils;
 using namespace GLCore::Render;
 
+
 SandboxLayer::SandboxLayer()
+	: mCameraController(16.0f / 9.0f, true)
 {
 }
 
@@ -20,6 +22,9 @@ void SandboxLayer::OnAttach()
 	EnableGLDebugging();
 
 	// Init here
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	mShader = Shader::FromGLSLTextFiles(
 		"assets/shaders/test.vert.glsl",
@@ -53,9 +58,6 @@ void SandboxLayer::OnAttach()
 	mTexture->Bind(slot);
 	mShader->SetUniform1i("uTexture", slot);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-
 	mVertexBuffer = new VertexBuffer(positions, sizeof(positions));
 	
 	mVertexArray = new VertexArray();
@@ -85,12 +87,16 @@ void SandboxLayer::OnDetach()
 void SandboxLayer::OnEvent(Event& event)
 {
 	// Events here
+	mCameraController.OnEvent(event);
+
 }
 
 void SandboxLayer::OnUpdate(Timestep ts)
 {
 	// Render here
 	
+	mCameraController.OnUpdate(ts);
+
 	mRenderer->Clear(0.1f, 0.1f, 0.1f, 1.0f);
 
 	static std::vector<float>color = { 0.0, 0.0, 0.0, 1.0 };
@@ -109,7 +115,7 @@ void SandboxLayer::OnUpdate(Timestep ts)
 		}
 	}
 	mShader->SetUniform4f("uColor", color[0], color[1], color[2], color[3]);
-
+	mShader->SetUniformMat4f("uMVP", mCameraController.GetCamera().GetViewProjectionMatrix());
 
 	// If we have NO Index Buffer
 	//glDrawArrays(GL_TRIANGLES, 0, mBufferSize / mAttribComponentNum);

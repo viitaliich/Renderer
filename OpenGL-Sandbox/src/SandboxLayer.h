@@ -18,6 +18,7 @@ private:
 	GLCore::Render::Texture* mTexture = nullptr;
 	std::unique_ptr<GLCore::Render::Renderer> mRenderer;
 
+	GLCore::Utils::OrthographicCameraController mCameraController;
 	GLCore::Utils::Shader* mShader = nullptr;
 	GLCore::Utils::VertexArray* mVertexArray = nullptr;
 	GLCore::Utils::VertexBuffer* mVertexBuffer = nullptr;
