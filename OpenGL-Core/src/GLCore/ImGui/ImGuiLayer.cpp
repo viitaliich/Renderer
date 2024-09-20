@@ -38,6 +38,10 @@ namespace GLCore {
 			style.WindowRounding = 0.0f;
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
+        // Scaling ???
+        //style.ScaleAllSizes(5.0f);
+        //io.FontAllowUserScaling = true;
+        io.FontGlobalScale = 2.0f;
 
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());

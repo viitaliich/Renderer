@@ -23,4 +23,6 @@ private:
 	GLCore::Utils::VertexArray* mVertexArray = nullptr;
 	GLCore::Utils::VertexBuffer* mVertexBuffer = nullptr;
 	GLCore::Utils::IndexBuffer* mIndexBuffer = nullptr;
+
+    glm::vec3 mTranslation = { 0, 0, 0 };
 };
